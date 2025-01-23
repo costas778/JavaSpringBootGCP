@@ -1,3 +1,7 @@
 # Project exclude paths
 /booking-contract/target/
 *.txt
+# Infrastructure directories
+/docker/
+/kubernetes/
+/terraform/

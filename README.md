@@ -1,4 +1,4 @@
-# eCabs coding challenge
+# JavaSpringBoot
 
 ## Assumptions
 * I'm assuming fire and forget approach - API endpoint is publishing message and not waiting for confirmation, returning HTTP 202 Accepted because data will be processed later in consumer
