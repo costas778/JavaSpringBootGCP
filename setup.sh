@@ -399,7 +399,7 @@ metadata:
   name: app-config
 data:
   # RabbitMQ Configuration
-  SPRING_RABBITMQ_HOST: "rabbitmq-service"
+  SPRING_RABBITMQ_HOST: "rabbitmq"
   SPRING_RABBITMQ_PORT: "5672"
   SPRING_RABBITMQ_USERNAME: "guest"
   SPRING_RABBITMQ_PASSWORD: "guest"
