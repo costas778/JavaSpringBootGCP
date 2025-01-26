@@ -20,8 +20,11 @@
         <java.version>11</java.version>
         <jackson.version>2.15.2</jackson.version>
     </properties>
-
     <dependencies>
+	<dependency>
+   	    <groupId>org.springframework.boot</groupId>
+   	    <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>    
         <!-- Spring Boot AMQP for RabbitMQ -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

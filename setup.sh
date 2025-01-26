@@ -377,7 +377,7 @@ EOF
 apiVersion: v1
 kind: Service
 metadata:
-  name: rabbitmq-service
+  name: rabbitmq
 spec:
   selector:
     app: rabbitmq
