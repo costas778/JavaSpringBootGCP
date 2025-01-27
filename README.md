@@ -133,11 +133,30 @@ kubectl get deployments -o yaml
 
 ## **Troubleshooting Commands**
 
-### For consumer pods
+### containers that keep crashing and restarting
+**kubectl get pods -w**
+* NAME                                READY   STATUS    RESTARTS      AGE
+* booking-consumer-54598b877d-7h7mf   0/1     Running   1 (14s ago)   66s
+* booking-consumer-54598b877d-hmbdh   0/1     Running   1 (15s ago)   66s
+* booking-producer-845b699bdd-85bk5   1/1     Running   0             63s
+* booking-producer-845b699bdd-vd727   1/1     Running   0             63s
+* rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0             103m
+* booking-consumer-54598b877d-7h7mf   0/1     Running   2 (1s ago)    112s
+* booking-consumer-54598b877d-hmbdh   0/1     Running   2 (1s ago)    112s
+* booking-consumer-54598b877d-hmbdh   0/1     Running   3 (1s ago)    2m52s
+* booking-consumer-54598b877d-7h7mf   0/1     Running   3 (0s ago)    2m53s
+
+* ** This is, likely, due to resources for the containers or / and connexctivity issues!**
+
+
+### Gathering logs for consumer pods
 kubectl logs -l app=booking-consumer --tail=100
 
-### For producer pods
+### Gathering logs for producer pods
 kubectl logs -l app=booking-producer --tail=100
+
+### Gathering verbose details for a managed pod
+kubectl describe pod -l app=booking-consumer
 
 ### Delete existing pods (Kubernetes will automatically recreate them with the new configuration)
 kubectl delete pod -l app=booking-consumer
