@@ -131,6 +131,15 @@ kubectl get configmaps
 ## Check environment variables in deployments
 kubectl get deployments -o yaml
 
+## **Troubleshooting**
+
+# For consumer pods
+kubectl logs -l app=booking-consumer --tail=100
+# For producer pods
+kubectl logs -l app=booking-producer --tail=100
+
+
+
 
 
 
