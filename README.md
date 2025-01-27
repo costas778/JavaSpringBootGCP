@@ -133,9 +133,10 @@ kubectl get deployments -o yaml
 
 ## **Troubleshooting**
 
-# For consumer pods
+## For consumer pods
 kubectl logs -l app=booking-consumer --tail=100
-# For producer pods
+
+## For producer pods
 kubectl logs -l app=booking-producer --tail=100
 
 
