@@ -60,7 +60,7 @@ RabbitMQ:
 Configures RabbitMQ as a stateful service with liveness/readiness probes.
 Exposes ports for AMQP and management interfaces.
 
-5. Docker
+**5. Docker**
 Prepares directory structure for producer and consumer Dockerfiles, though no specific Dockerfiles are created in this script.
 Purpose
 This script is designed to bootstrap an environment for deploying an application involving:
