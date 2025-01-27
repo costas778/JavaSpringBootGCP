@@ -75,10 +75,13 @@ Docker Preparation:
 Sets up a directory for building Docker images for the applications.
 
 **Usage**
-Pre-requisites:
-AWS CLI configured with access credentials.
-Terraform installed.
-Proper permissions to create AWS resources.
+Pre-requisites (use the commands below to check if you have anything missing)
+AWS CLI configured with access credentials: aws --version
+IE generate both Access and Secret Key on AWS IAM 
+Kubernetes: kubectl version --client
+Terraform: terraform version
+
+
 
 
 
