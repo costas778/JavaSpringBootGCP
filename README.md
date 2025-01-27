@@ -111,6 +111,7 @@ Pre-requisites (use the commands below to check if you have anything missing)
 
 **Testing**
 * #Check the pods
+  
 * **kubectl get pods -w**
   
 * NAME                                READY   STATUS    RESTARTS   AGE
@@ -119,6 +120,8 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * booking-producer-845b699bdd-56qlm   1/1     Running   0          8h
 * booking-producer-845b699bdd-j7s6l   1/1     Running   0          8h
 * rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0          33h
+
+* 
 
 
 
