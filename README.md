@@ -162,6 +162,56 @@ kubectl describe pod -l app=booking-consumer
 kubectl delete pod -l app=booking-consumer
 kubectl delete pod -l app=booking-producer
 
+### We might need to adjust the probe timing in the Kubernetes deployment. 
+
+### Searching for the settings to apply Vertical Scaling of resources! 
+find . -name "*deployment*.yaml" | grep <e.g. consumer>
+
+
+cat ./kubernetes/consumer/deployment.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-consumer
+spec:
+  replicas: 2 **<---Adjustables**
+  selector:
+    matchLabels:
+      app: booking-consumer
+  template:
+    metadata:
+      labels:
+        app: booking-consumer
+    spec:
+      containers:
+      - name: booking-consumer
+        image: 961109809677.dkr.ecr.us-east-1.amazonaws.com/booking-consumer:latest
+        envFrom:
+        - configMapRef:
+            name: app-config
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30 **<---Adjustables**
+          periodSeconds: 10 **<---Adjustables**
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30 **<---Adjustables**
+          periodSeconds: 10 **<---Adjustables**
+        resources:
+          limits:
+            cpu: "500m" **<---Adjustables**
+            memory: "512Mi" **<---Adjustables**
+          requests:
+            cpu: "200m" **<---Adjustables**
+            memory: "256Mi" **<---Adjustables**
+
+### Needed to apply changes to a YAML after editing. 
+kubectl apply -f deployment.yaml 
+
 
 
 
