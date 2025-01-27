@@ -78,11 +78,33 @@ Sets up a directory for building Docker images for the applications.
 Pre-requisites (use the commands below to check if you have anything missing)
 * AWS CLI configured with access credentials: aws --version
 * **IE generate both Access and Secret Key on AWS IAM**
-* Kubernetes: kubectl version --client
-* Terraform: terraform version
+* Kubernetes: **kubectl version --client**
+* Terraform: **terraform version**
+* Docker: **docker --version**
+* GIT: **git --version**
+* JAVA: **java -version**
+* MAVEN: **mvn -version**
 
+* If any of the above is missing
+* **sudo apt update** (followed by)
+* **sudo apt install** (application name)
 
+* WSL2 environment (mine is Ubuntu)
+*  **cat /etc/os-release **
 
+Setup
+* **aws configure **
+* AWS Access Key ID [****************5YIV]: 
+* AWS Secret Access Key [****************L8ts]: 
+* Default region name [us-east-1]: 
+* Default output format [None]:
+* **NOTE: put in the Access key and Secret Access Key you created earlier in IAM with the region name. Press enter after entry (choose None for Default output format)
+**
+* From the Linux CLI: **git clone https://github.com/costas778/JavaSpringBoot.git**
+* from the root of the folder structure locate the setup.sh, and use the following command: **chmond +x setup.sh**
+* finally, type in he Linux CLI the following: **./setup.sh**
+
+* You should get the following:
 
 
 ![Alt Text](./jsb2.png)
