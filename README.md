@@ -111,7 +111,7 @@ Pre-requisites (use the commands below to check if you have anything missing)
 
 ## **Testing**
 
-## Check the pods
+### Check the pods
   
 * **kubectl get pods -w**
   
