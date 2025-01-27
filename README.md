@@ -121,7 +121,15 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * booking-producer-845b699bdd-j7s6l   1/1     Running   0          8h
 * rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0          33h
 
-* 
+* # Check service types
+* kubectl get svc -o wide
+
+# Check ConfigMaps
+kubectl get configmaps
+
+# Check environment variables in deployments
+kubectl get deployments -o yaml
+
 
 
 
