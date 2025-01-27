@@ -90,16 +90,16 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * **sudo apt install** (application name)
 
 * WSL2 environment (mine is Ubuntu)
-*  **cat /etc/os-release **
+* **cat /etc/os-release** 
 
 **Setup**
-* **aws configure **
+* **aws configure** 
 * AWS Access Key ID [****************5YIV]: 
 * AWS Secret Access Key [****************L8ts]: 
 * Default region name [us-east-1]: 
 * Default output format [None]:
-* **NOTE: put in the Access key and Secret Access Key you created earlier in IAM with the region name. Press enter after entry (choose None for Default output format)
-**
+* **NOTE: put in the Access key and Secret Access Key you created earlier in IAM with the region name. Press enter after entry (choose None for Default output format)**
+
 * From the Linux CLI: **git clone https://github.com/costas778/JavaSpringBoot.git**
 * from the root of the folder structure locate the setup.sh, and use the following command: **chmond +x setup.sh**
 * finally, type in he Linux CLI the following: **./setup.sh**
@@ -108,4 +108,17 @@ Pre-requisites (use the commands below to check if you have anything missing)
 
 
 ![Alt Text](./jsb2.png)
+
+**Testing**
+* Check the pods
+* kubectl get pods -w
+NAME                                READY   STATUS    RESTARTS   AGE
+booking-consumer-6d9f74974-84xlw    1/1     Running   0          12h
+booking-consumer-6d9f74974-slf9r    1/1     Running   0          12h
+booking-producer-845b699bdd-56qlm   1/1     Running   0          8h
+booking-producer-845b699bdd-j7s6l   1/1     Running   0          8h
+rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0          33h
+
+
+
 
