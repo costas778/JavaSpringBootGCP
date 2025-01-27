@@ -170,7 +170,7 @@ find . -name "*deployment*.yaml" | grep <e.g. consumer>
 
 cat ./kubernetes/consumer/deployment.yaml 
 
-
+![Alt Text](./jsb3.png)
 
 ### Needed to apply changes to a YAML after editing. 
 kubectl apply -f deployment.yaml 
