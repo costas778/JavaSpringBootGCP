@@ -74,7 +74,7 @@ Provides manifests for deploying services like RabbitMQ, producer, and consumer 
 Docker Preparation:
 Sets up a directory for building Docker images for the applications.
 
-**Usage**
+# **Usage**
 Pre-requisites (use the commands below to check if you have anything missing)
 * AWS CLI configured with access credentials: aws --version
 * **IE generate both Access and Secret Key on AWS IAM**
