@@ -74,7 +74,7 @@ Provides manifests for deploying services like RabbitMQ, producer, and consumer 
 Docker Preparation:
 Sets up a directory for building Docker images for the applications.
 
-# **Usage**
+## **Usage**
 Pre-requisites (use the commands below to check if you have anything missing)
 * AWS CLI configured with access credentials: aws --version
 * **IE generate both Access and Secret Key on AWS IAM**
@@ -92,7 +92,7 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * WSL2 environment (mine is Ubuntu)
 * **cat /etc/os-release** 
 
-# **Setup**
+## **Setup**
 * **aws configure** 
 * AWS Access Key ID [****************5YIV]: 
 * AWS Secret Access Key [****************L8ts]: 
@@ -109,9 +109,9 @@ Pre-requisites (use the commands below to check if you have anything missing)
 
 ![Alt Text](./jsb2.png)
 
-# **Testing**
+## **Testing**
 
-# Check the pods
+## Check the pods
   
 * **kubectl get pods -w**
   
@@ -122,13 +122,13 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * booking-producer-845b699bdd-j7s6l   1/1     Running   0          8h
 * rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0          33h
 
-# Check service types
+## Check service types
 kubectl get svc -o wide
 
-# Check ConfigMaps
+## Check ConfigMaps
 kubectl get configmaps
 
-# Check environment variables in deployments
+## Check environment variables in deployments
 kubectl get deployments -o yaml
 
 
