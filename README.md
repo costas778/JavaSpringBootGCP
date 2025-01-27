@@ -24,5 +24,5 @@ http://localhost:8080/swagger-ui/index.html
 
 
 ![Alt Text](./jsb1.png)
-![image](https://github.com/JavaSpringBoot/jsb2.png)
+![Alt Text](./jsb2.png)
 
