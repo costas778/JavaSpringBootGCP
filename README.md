@@ -26,7 +26,7 @@ http://localhost:8080/swagger-ui/index.html
 ### Deployment of the script
 ![Alt Text](./jsb1.png)
 
-Once you run setup.sh the following detailed Script Actions will occur:
+Once you run **setup.sh** the following detailed Script Actions will occur:
 
 **1. Directory Setup**
 Creates directories for:
