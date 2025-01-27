@@ -23,6 +23,6 @@ Endpoints documentation is generated on the fly in OpenAPI format by booking-pro
 http://localhost:8080/swagger-ui/index.html
 
 
-![image](https://github.com/JavaSpringBoot/jsb1.png)
+![Alt Text](./jsb1.png)
 ![image](https://github.com/JavaSpringBoot/jsb2.png)
 
