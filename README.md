@@ -92,7 +92,7 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * WSL2 environment (mine is Ubuntu)
 *  **cat /etc/os-release **
 
-Setup
+**Setup**
 * **aws configure **
 * AWS Access Key ID [****************5YIV]: 
 * AWS Secret Access Key [****************L8ts]: 
