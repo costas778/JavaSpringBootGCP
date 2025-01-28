@@ -177,6 +177,9 @@ cat ./kubernetes/consumer/deployment.yaml
 ### Now to apply changes to a YAML after editing. 
 kubectl apply -f deployment.yaml 
 
+### If that fails you may need to rebuild the images and reploy them to the EKS!
+
+
 ### 2. Having issues seeing your cluster from another machine.
 ![Alt Text](./jsb6.png)
 
