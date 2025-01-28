@@ -135,7 +135,7 @@ kubectl get deployments -o yaml
 
 ## **Troubleshooting Commands**
 
-### containers that keep crashing and restarting
+### 1. containers that keep crashing and restarting
 **kubectl get pods -w**
 * NAME                                READY   STATUS    RESTARTS      AGE
 * booking-consumer-54598b877d-7h7mf   0/1     Running   1 (14s ago)   66s
@@ -174,10 +174,12 @@ cat ./kubernetes/consumer/deployment.yaml
 
 ![Alt Text](./jsb3.png)
 
-### Needed to apply changes to a YAML after editing. 
+### Now to apply changes to a YAML after editing. 
 kubectl apply -f deployment.yaml 
 
-### Having issues seeing your cluster from another machine.
+### 2. Having issues seeing your cluster from another machine.
+![Alt Text](./jsb6.png)
+
 A few useful steps:
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
