@@ -184,14 +184,14 @@ kubectl apply -f deployment.yaml
 ![Alt Text](./jsb6.png)
 
 A few useful steps:
-* unset AWS_ACCESS_KEY_ID
-* unset AWS_SECRET_ACCESS_KEY
-* unset AWS_SESSION_TOKEN
+* **unset AWS_ACCESS_KEY_ID**
+* **unset AWS_SECRET_ACCESS_KEY**
+* **unset AWS_SESSION_TOKEN****
 
-Then try aws configure again
+Then try **aws configure again**
 
 If that fails:
-aws eks list-clusters
+**aws eks list-clusters**
 
 ![Alt Text](./jsb5.png)
 
