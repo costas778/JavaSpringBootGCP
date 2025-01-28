@@ -122,6 +122,8 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * booking-producer-845b699bdd-j7s6l   1/1     Running   0          8h
 * rabbitmq-5cfd974bf6-zd8xm           1/1     Running   0          33h
 
+![Alt Text](./jsb4.png)
+
 ### Check service types
 kubectl get svc -o wide
 
