@@ -200,7 +200,7 @@ if you can see your cluster let's update your kubeconfig to connect to this clus
 aws eks update-kubeconfig --name dev-ecabs-cluster --region us-east-1
 
 Now try the following:
-kubectl get pods -w
+**kubectl get pods -w**
 
 
 
