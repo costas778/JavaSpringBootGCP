@@ -177,6 +177,30 @@ cat ./kubernetes/consumer/deployment.yaml
 ### Needed to apply changes to a YAML after editing. 
 kubectl apply -f deployment.yaml 
 
+### Having issues seeing your cluster from another machine.
+A few useful steps:
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
+
+Then try aws configure again
+
+If that fails:
+aws eks list-clusters
+
+![Alt Text](./jsb5.png)
+
+if you can see your cluster let's update your kubeconfig to connect to this cluster with the following command:
+
+aws eks update-kubeconfig --name dev-ecabs-cluster --region us-east-1
+
+Now try the following:
+kubectl get pods -w
+
+
+
+
+
 
 
 
