@@ -210,29 +210,26 @@ There is **build_and_push_cons.sh** for the booking-consumer service image &
 There is **build_and_push_prod.sh** for the booking-producer service image.
 
 The scripts are designed to build and push a Docker container for a booking service to Amazon ECR (Elastic Container Registry).
+
 Here's a breakdown of what the script does:
 
-Sets up variables:
-
+**Sets up variables:**
 Enables debug output with **set -x**
-
 Authenticates with Amazon ECR:
 
-Builds the Java application:
-
+**Builds the Java application:**
 Changes to the particular service directory
 
-Uses Maven wrapper ( ./mvnw) to create a JAR file, skipping tests:
+**Uses Maven wrapper ( ./mvnw) to create a JAR file, skipping tests:**
 **./mvnw clean package -DskipTests**
 
-Builds the Docker image:
-
+**Builds the Docker image:**
 Returns to the project root
 
 Builds using a Dockerfile located at docker/<service>/Dockerfile
 **docker build -t $IMAGE_NAME -f "$PROJECT_ROOT/docker/consumer/Dockerfile" .**
 
-Tags and pushes to ECR:
+**Tags and pushes to ECR:**
 
 This script is part of a CI/CD process for deploying the booking consumer microservice, specifically:
 
