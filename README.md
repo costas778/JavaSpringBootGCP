@@ -213,29 +213,29 @@ The scripts are designed to build and push a Docker container for a booking serv
 
 Here's a breakdown of what the script does:
 
-**Sets up variables:**
+### **Sets up variables:**
 Enables debug output with **set -x**
 Authenticates with Amazon ECR:
 
-**Builds the Java application:**
+### **Builds the Java application:**
 Changes to the particular service directory
 
-**Uses Maven wrapper ( ./mvnw) to create a JAR file, skipping tests:**
+### **Uses Maven wrapper ( ./mvnw) to create a JAR file, skipping tests:**
 **./mvnw clean package -DskipTests**
 
-**Builds the Docker image:**
+### **Builds the Docker image:**
 Returns to the project root
 
-Builds using a Dockerfile located at docker/<service>/Dockerfile
+### Builds using a Dockerfile located at docker/<service>/Dockerfile
 **docker build -t $IMAGE_NAME -f "$PROJECT_ROOT/docker/consumer/Dockerfile" .**
 
-**Tags and pushes to ECR:**
+### **Tags and pushes to ECR:**
 
 This script is part of a CI/CD process for deploying the booking consumer microservice, specifically:
 
-Building the Java application
-Creating a Docker container
-Publishing it to Amazon ECR in the us-east-1 region
+* Building the Java application
+* Creating a Docker container
+* Publishing it to Amazon ECR in the us-east-1 region
 
 The script includes error checking and debug output to help troubleshoot any issues during the build and push process.
 
@@ -263,7 +263,7 @@ The script below helps.
 The above script chekcs if everything is destoryed! If the resources are not totally destoryed and your finding they are stubborn to be
 removed you can make a note of these and then login to AWS and remove them manually!
 
-### 4. A bonus script!
+### 5. A bonus script!
 
 I also provide a bash script called **setup_gcp.sh**
 
@@ -271,28 +271,28 @@ THe **./setup_gcp.sh** script is intended to do what the setup.sh does in terms 
 
  This will set up similar infrastructure using GKE (Google Kubernetes Engine) instead of EKS:
 
-**Key differences from the AWS version:**
+### **Key differences from the AWS version:**
 
-**Uses GCP-specific services:**
+### **Uses GCP-specific services:**
 
-GKE instead of EKS
+### GKE instead of EKS
 Google Container Registry (GCR) instead of ECR
 Google Cloud VPC instead of AWS VPC
 
-**Authentication:**
+### **Authentication:**
 Uses gcloud CLI instead of AWS CLI
 Uses GCP service account authentication
 
-**Infrastructure:**
+### **Infrastructure:**
 Simplified networking setup (GCP has different networking concepts)
 Uses GKE-specific node pool configuration
 Different firewall rules structure
 
-**Container Registry:**
+### **Container Registry:**
 Uses gcr.io instead of AWS ECR
 Different authentication mechanism for container registry
 
-To use this script, you'll need:
+### To use this script, you'll need:
 Google Cloud SDK installed
 Authenticated gcloud CLI
 A GCP project created
@@ -300,7 +300,7 @@ Appropriate IAM permissions
 Terraform installed
 kubectl installed
 
-Before running, make sure to:
+### Before running, make sure to:
 Set up a GCP project
 Enable necessary APIs (Container Registry, GKE, Compute Engine)
 Set up appropriate service account permissions
