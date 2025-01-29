@@ -202,7 +202,7 @@ aws eks update-kubeconfig --name dev-ecabs-cluster --region us-east-1
 Now try the following:
 **kubectl get pods -w**
 
-### 3. Troubleshooting tools
+## 3. Troubleshooting tools
 If you find any issues with a container image that is deployed and you are loathed to rebuild the whole enviornment from scratch using setup.sh
 there are two bash scripts uploaded to facilatate this.
 
@@ -250,7 +250,7 @@ This script essentially gives you a focused tool for managing a particular servi
 **./build_and_push_cons.sh**
 
 
-### 4. Destorying your setup
+## 4. Destorying your setup
 The cloud is like a taxi. That is its pay as you go. As long as resources exist you are paying for them. This is fine in production.
 However, when you do not need these these resources its best to delete them!
 
@@ -263,7 +263,7 @@ The script below helps.
 The above script chekcs if everything is destoryed! If the resources are not totally destoryed and your finding they are stubborn to be
 removed you can make a note of these and then login to AWS and remove them manually!
 
-### 5. A bonus script!
+## 5. A bonus script!
 
 I also provide a bash script called **setup_gcp.sh**
 
