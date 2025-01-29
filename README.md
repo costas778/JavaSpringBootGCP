@@ -268,10 +268,9 @@ removed you can make a note of these and then login to AWS and remove them manua
 I also provide a bash script called **setup_gcp.sh**
 
 THe **./setup_gcp.sh** script is intended to do what the setup.sh does in terms of CI/CD deployment on the Google GCP platform!
+This will set up similar infrastructure using GKE (Google Kubernetes Engine) instead of EKS
 
- This will set up similar infrastructure using GKE (Google Kubernetes Engine) instead of EKS:
-
-### **Key differences from the AWS version:**
+## **Key differences from the AWS version:**
 
 ### **Uses GCP-specific services:**
 
