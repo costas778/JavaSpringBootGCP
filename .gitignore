@@ -5,3 +5,25 @@
 /docker/
 /kubernetes/
 /terraform/
+
+# GCP specific
+/gcp/
+/google-cloud-sdk/
+
+# Logs
+logs/
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+#Other
+build_and_push_cons.sh
+build_and_push_prod.sh
+check_resources.sh
+cleanup.sh
+docker.sh
+setup.sh
+*.txt
+*.tar.gz
