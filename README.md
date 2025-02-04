@@ -1,6 +1,6 @@
 
 
-# JavaSpringBoot Modules deployed using a script in AWS!
+# JavaSpringBoot Modules deployed using a script in GCP!
 
 ## Assumptions
 * I'm assuming fire and forget approach - API endpoint is publishing message and not waiting for confirmation, returning HTTP 202 Accepted because data will be processed later in consumer
@@ -26,7 +26,7 @@ http://localhost:8080/swagger-ui/index.html
 ### Deployment of the script
 ![Alt Text](./jsb1.png)
 
-Once you run **setup.sh** the following detailed Script Actions will occur:
+Once you run either **setup_gcp_lite.sh** or **setup_gcp.sh** the following detailed Script Actions will occur:
 
 **1. Directory Setup**
 Creates directories for:
@@ -35,8 +35,8 @@ Kubernetes manifests for RabbitMQ, producer, consumer, configmaps, and secrets.
 Docker configurations for producer and consumer services.
 
 **2. Terraform Modules**
-EKS Module:
-Provisions an EKS cluster with managed node groups.
+GKE Module:
+Provisions an GKE cluster with managed node groups.
 Configures public/private endpoint access.
 Specifies instance types and scaling properties for the node groups.
 Networking Module:
@@ -46,8 +46,8 @@ Tags resources appropriately for Kubernetes.
 
 **3. Terraform Environment Configuration**
 Environment-specific files include:
-provider.tf: Defines AWS and Kubernetes providers.
-main.tf: Integrates the networking and EKS modules.
+provider.tf: Defines GCP and Kubernetes providers.
+main.tf: Integrates the networking and GKE modules.
 variables.tf: Defines configurable parameters (e.g., region, subnets).
 
 **4. Kubernetes Manifests**
@@ -65,10 +65,10 @@ Prepares directory structure for producer and consumer Dockerfiles, though no sp
 Purpose
 This script is designed to bootstrap an environment for deploying an application involving:
 
-**AWS Infrastructure:**
+**GCP Infrastructure:**
 Sets up the networking and compute resources using Terraform.
 Kubernetes Cluster:
-Configures EKS for container orchestration.
+Configures GKE for container orchestration.
 Application Deployment:
 Provides manifests for deploying services like RabbitMQ, producer, and consumer in Kubernetes.
 Docker Preparation:
@@ -76,8 +76,8 @@ Sets up a directory for building Docker images for the applications.
 
 ## **Usage**
 Pre-requisites (use the commands below to check if you have anything missing)
-* AWS CLI configured with access credentials: aws --version
-* **IE generate both Access and Secret Key on AWS IAM**
+* Gloud CLI configured with access credentials: gcloud version
+* **Obtain the Project ID by logining into the GCP console or using gcloud projects list in the cli**
 * Kubernetes: **kubectl version --client**
 * Terraform: **terraform version**
 * Docker: **docker --version**
@@ -93,16 +93,28 @@ Pre-requisites (use the commands below to check if you have anything missing)
 * **cat /etc/os-release** 
 
 ## **Setup**
-* **aws configure** 
-* AWS Access Key ID [****************5YIV]: 
-* AWS Secret Access Key [****************L8ts]: 
-* Default region name [us-east-1]: 
-* Default output format [None]:
-* **NOTE: put in the Access key and Secret Access Key you created earlier in IAM with the region name. Press enter after entry (choose None for Default output format)**
+* From the Linux CLI: **git clone https://github.com/costas778/JavaSpringBootGCP.git**
+* from the root of the folder structure locate the setup.sh, and use the following command: **chmond +x setup_gcp_lite.sh**
+* **Place the project ID name in the script (i.e. lines 296 and 590 or there abouts)**
+* Run **gcloud init** and select the following prompts:
+*  **y**
+*  https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=uoCyy4pj2Eoq9QVgbLMbtxUJRaMarz&access_type=offline&code_challenge=HD20UyFOqTcwnTXwfrcL0bqX4WnfnzvcZbal8GqwS2s&code_challenge_method=S256
+*  NOTE: Click and follow the prompts
+*  **[4] Enter a project ID** <project name - i.e. what you placed in lines 296 and 590 or there abouts>
+*  **Do you want to configure a default Compute Region and Zone? (Y/n)?  y**
+*  **Enter "list" at prompt to print choices fully. Please enter numeric choice or text value (must exactly match list item):  8**
+  
 
-* From the Linux CLI: **git clone https://github.com/costas778/JavaSpringBoot.git**
-* from the root of the folder structure locate the setup.sh, and use the following command: **chmond +x setup.sh**
-* finally, type in he Linux CLI the following: **./setup.sh**
+* finally, type in he Linux CLI the following: **./setup_gcp_lite.sh**
+
+*  GCP is different to AWS and requires you to respond to a few prompts running the script. Just copy the links presented in the CLI and respond to
+*  the authentication prompts.
+
+*  **NOTE: there is also a setup_gcp.sh script with enhanced features including: greater error handling, removing existing assets**
+*  **of the software, dealing with Buildx issues, ensuring you have a supportive k8S client as well as when docker folders failed to be created.**
+*  **I recommend using the setup_gcp.sh script if you run into issues using the setup_gcp_lite.sh.**
+
+
 
 * You should get the following:
 
@@ -177,98 +189,15 @@ cat ./kubernetes/consumer/deployment.yaml
 ### Now to apply changes to a YAML after editing. 
 kubectl apply -f deployment.yaml 
 
-### If that fails you may need to rebuild the images and reploy them to the EKS!
+### If that fails you may need to rebuild the images and reploy them to the GKE!
 
 
-### 2. Having issues seeing your cluster from another machine.
-![Alt Text](./jsb6.png)
+## 5. A breakdown of the GCP scripts!
 
-A few useful steps:
-* **unset AWS_ACCESS_KEY_ID**
-* **unset AWS_SECRET_ACCESS_KEY**
-* **unset AWS_SESSION_TOKEN****
+Both the **setup_gcp_lite.sh** and the **setup_gcp.sh** scripts are intended to do what the AWS setup.sh does in terms of CI/CD deployment on the Google GCP platform!
+This will set up similar infrastructure using GKE (Google Kubernetes Engine) instead of EKS.
 
-Then try **aws configure again**
-
-If that fails:
-**aws eks list-clusters**
-
-![Alt Text](./jsb5.png)
-
-if you can see your cluster let's update your kubeconfig to connect to this cluster with the following command:
-
-aws eks update-kubeconfig --name dev-ecabs-cluster --region us-east-1
-
-Now try the following:
-**kubectl get pods -w**
-
-## 3. Troubleshooting tools
-If you find any issues with a container image that is deployed and you are loathed to rebuild the whole enviornment from scratch using setup.sh
-there are two bash scripts uploaded to facilatate this.
-
-There is **build_and_push_cons.sh** for the booking-consumer service image &
-There is **build_and_push_prod.sh** for the booking-producer service image.
-
-The scripts are designed to build and push a Docker container for a booking service to Amazon ECR (Elastic Container Registry).
-
-Here's a breakdown of what the script does:
-
-### **Sets up variables:**
-Enables debug output with **set -x**
-Authenticates with Amazon ECR:
-
-### **Builds the Java application:**
-Changes to the particular service directory
-
-### **Uses Maven wrapper ( ./mvnw) to create a JAR file, skipping tests:**
-**./mvnw clean package -DskipTests**
-
-### **Builds the Docker image:**
-Returns to the project root
-
-### Builds using a Dockerfile located at docker/<service>/Dockerfile
-**docker build -t $IMAGE_NAME -f "$PROJECT_ROOT/docker/consumer/Dockerfile" .**
-
-### **Tags and pushes to ECR:**
-
-This script is part of a CI/CD process for deploying the booking consumer microservice, specifically:
-
-* Building the Java application
-* Creating a Docker container
-* Publishing it to Amazon ECR in the us-east-1 region
-
-The script includes error checking and debug output to help troubleshoot any issues during the build and push process.
-
-This script essentially gives you a focused tool for managing a particular service deployment, which is particularly valuable during development and troubleshooting phases.
-
-**NOTE:** do not forget to apply permissions to your bash scripts.
-
-**chmod +x build_and_push_cons.sh**
-**chmod +x build_and_push_prod.sh**
-
-**./build_and_push_prod.sh**
-**./build_and_push_cons.sh**
-
-
-## 4. Destorying your setup
-The cloud is like a taxi. That is its pay as you go. As long as resources exist you are paying for them. This is fine in production.
-However, when you do not need these these resources its best to delete them!
-
-The script below helps.
-
-**NOTE:** do not forget to apply permissions to your bash scripts.
-**./cleanup.sh**
-
-**./check_resources.sh**
-The above script chekcs if everything is destoryed! If the resources are not totally destoryed and your finding they are stubborn to be
-removed you can make a note of these and then login to AWS and remove them manually!
-
-## 5. A bonus script!
-
-I also provide a bash script called **setup_gcp.sh**
-
-THe **./setup_gcp.sh** script is intended to do what the setup.sh does in terms of CI/CD deployment on the Google GCP platform!
-This will set up similar infrastructure using GKE (Google Kubernetes Engine) instead of EKS
+**NOTE: if you want access to the EKS script please go to https://github.com/costas778/JavaSpringBoot**
 
 ## **Key differences from the AWS version:**
 
@@ -305,4 +234,5 @@ Enable necessary APIs (Container Registry, GKE, Compute Engine)
 Set up appropriate service account permissions
 Initialize gcloud configuration
 
-**NOTE:** This sciprt should work but requires full testing. Hence its providing on an as is basis.
+**NOTE:** These scripts have been tested and work! 
+* Any issues please get back to me!
