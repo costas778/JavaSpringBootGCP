@@ -27,3 +27,4 @@ docker.sh
 setup.sh
 *.txt
 *.tar.gz
+*.old
